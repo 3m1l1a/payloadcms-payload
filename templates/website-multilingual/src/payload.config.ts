@@ -4,6 +4,8 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb' // database-adapter-imp
 import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
+import { en } from '@payloadcms/translations/languages/en'
+import { sv } from '@payloadcms/translations/languages/sv'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
@@ -21,6 +23,24 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  // Feel free to delete this at any time. Simply remove the lines below and the import `translations` statements on lines 8 and 8.
+  i18n: {
+    supportedLanguages: { en, sv },
+    fallbackLanguage: 'en',
+  },
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Svenska',
+        code: 'sv',
+      },
+    ],
+    defaultLocale: 'en', // required
+  },
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
